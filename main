@@ -1,0 +1,5 @@
+  if game.PlaceId == 155010111 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Plusgaming1/Plushub/main/Animatronic%20World%20!"))()
+else
+    print("Game not found in Plus hub")
+end
