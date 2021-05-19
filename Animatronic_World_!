@@ -1,0 +1,278 @@
+-- Gui to Lua
+-- Version: 3.2
+
+local plr = game.Players.LocalPlayer
+
+
+
+local function Invis2()
+	--//Invis\\
+	local char = plr.Character
+
+	local lastPos = char.HumanoidRootPart.CFrame
+
+	char:MoveTo(Vector3.new(-32.2, 12.6, -31))
+	wait(0.3)
+	char:MoveTo(Vector3.new(12.5, 13.6, 21.5))
+	wait(0.3)
+	char:MoveTo(Vector3.new(-32.2, 12.6, -31))
+	wait(0.3)
+	char:MoveTo(Vector3.new(-114,13.7,-85.5))
+	wait(0.3)
+	char:MoveTo(Vector3.new(-84, 12.6, -121.74))
+	wait(0.3)
+	char:SetPrimaryPartCFrame(lastPos)
+end
+
+local function Clear2()
+	local char = plr.Character
+
+	local lastPos = char.HumanoidRootPart.CFrame
+	char:MoveTo(Vector3.new(-32.2, 12.6, -31))
+	wait(0.3)
+	char:SetPrimaryPartCFrame(lastPos)
+end
+
+-- Instances:
+
+local Gui = Instance.new("ScreenGui")
+local Drag = Instance.new("ImageLabel")
+local Main = Instance.new("ImageLabel")
+local Scroll = Instance.new("ScrollingFrame")
+local Invis = Instance.new("TextButton")
+local Clear = Instance.new("TextButton")
+local Teleports = Instance.new("TextButton")
+local TeleportsFrame = Instance.new("ScrollingFrame")
+local Button = Instance.new("TextButton")
+local Name = Instance.new("TextLabel")
+local Exit = Instance.new("TextButton")
+local Close = Instance.new("TextButton")
+
+
+--Properties:
+
+Gui.Name = "Gui"
+Gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Gui.ResetOnSpawn = false
+
+Drag.Name = "Drag"
+Drag.Parent = Gui
+Drag.AnchorPoint = Vector2.new(1, 1)
+Drag.BackgroundColor3 = Color3.fromRGB(76, 76, 76)
+Drag.BackgroundTransparency = 1.000
+Drag.Position = UDim2.new(1, 0, 1, 0)
+Drag.Size = UDim2.new(0.25, 0, 0.0500000007, 0)
+Drag.Image = "rbxassetid://3570695787"
+Drag.ImageColor3 = Color3.fromRGB(76, 76, 76)
+Drag.ScaleType = Enum.ScaleType.Slice
+Drag.SliceCenter = Rect.new(100, 100, 100, 100)
+Drag.SliceScale = 0.100
+
+Main.Name = "Main"
+Main.Parent = Drag
+Main.AnchorPoint = Vector2.new(0.5, 1)
+Main.BackgroundColor3 = Color3.fromRGB(89, 89, 89)
+Main.BackgroundTransparency = 1.000
+Main.Position = UDim2.new(0.5, 0, 0.300000012, 0)
+Main.Size = UDim2.new(1, 0, 7, 0)
+Main.Image = "rbxassetid://3570695787"
+Main.ImageColor3 = Color3.fromRGB(89, 89, 89)
+Main.ScaleType = Enum.ScaleType.Slice
+Main.SliceCenter = Rect.new(100, 100, 100, 100)
+Main.SliceScale = 0.100
+
+Scroll.Name = "Scroll"
+Scroll.Parent = Main
+Scroll.Active = true
+Scroll.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Scroll.BackgroundTransparency = 1.000
+Scroll.Position = UDim2.new(0, 0, 5.35584057e-08, 0)
+Scroll.Size = UDim2.new(1, 0, 1, 0)
+Scroll.CanvasSize = UDim2.new(0, 0, 4, 0)
+
+Invis.Name = "Invis"
+Invis.Parent = Scroll
+Invis.AnchorPoint = Vector2.new(0.5, 0.5)
+Invis.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+Invis.BorderSizePixel = 0
+Invis.Position = UDim2.new(0.5, 0, 0.0199999996, 0)
+Invis.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+Invis.Font = Enum.Font.SourceSans
+Invis.Text = "Invisible"
+Invis.TextColor3 = Color3.fromRGB(0, 0, 0)
+Invis.TextScaled = true
+Invis.TextSize = 14.000
+Invis.TextWrapped = true
+Invis.MouseButton1Click:Connect(function()
+	Invis2()
+end)
+
+Clear.Name = "Clear"
+Clear.Parent = Scroll
+Clear.AnchorPoint = Vector2.new(0.5, 0.5)
+Clear.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+Clear.BorderSizePixel = 0
+Clear.Position = UDim2.new(0.5, 0, 0.0500000007, 0)
+Clear.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+Clear.Font = Enum.Font.SourceSans
+Clear.Text = "Remove morph/invisibility"
+Clear.TextColor3 = Color3.fromRGB(0, 0, 0)
+Clear.TextScaled = true
+Clear.TextSize = 14.000
+Clear.TextWrapped = true
+Clear.MouseButton1Click:Connect(function()
+	Clear2()
+end)
+
+Name.Name = "Name"
+Name.Parent = Drag
+Name.AnchorPoint = Vector2.new(0, 1)
+Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Name.BackgroundTransparency = 1.000
+Name.Position = UDim2.new(0, 0, 1, 0)
+Name.Size = UDim2.new(0.502466083, 0, 0.699999988, 0)
+Name.Font = Enum.Font.SciFi
+Name.Text = "Animatronic World !"
+Name.TextColor3 = Color3.fromRGB(0, 0, 0)
+Name.TextScaled = true
+Name.TextSize = 14.000
+Name.TextWrapped = true
+
+Exit.Name = "Exit"
+Exit.Parent = Drag
+Exit.AnchorPoint = Vector2.new(1, 1)
+Exit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Exit.BackgroundTransparency = 1.000
+Exit.Position = UDim2.new(1, 0, 1, 0)
+Exit.Size = UDim2.new(0.100000001, 0, 0.699999988, 0)
+Exit.Font = Enum.Font.SourceSans
+Exit.Text = "X"
+Exit.TextColor3 = Color3.fromRGB(255, 0, 0)
+Exit.TextScaled = true
+Exit.TextSize = 14.000
+Exit.TextWrapped = true
+Exit.MouseButton1Click:Connect(function()
+	Gui:Destroy()
+end)
+
+local Closed = false
+Close.Name = "Close"
+Close.Parent = Drag
+Close.AnchorPoint = Vector2.new(1, 1)
+Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Close.BackgroundTransparency = 1.000
+Close.Position = UDim2.new(0.899999976, 0, 1, 0)
+Close.Size = UDim2.new(0.100000001, 0, 0.699999988, 0)
+Close.Font = Enum.Font.SourceSans
+Close.Text = "-"
+Close.TextColor3 = Color3.fromRGB(135, 135, 135)
+Close.TextSize = 100.000
+Close.TextWrapped = true
+Close.MouseButton1Click:Connect(function()
+	if Closed then
+		Closed = false
+		Main.Visible = true
+	else
+		Closed = true
+		Main.Visible = false
+	end
+end)
+
+TeleportsFrame.Name = "TeleportsFrame"
+TeleportsFrame.Parent = Teleports
+TeleportsFrame.Active = true
+TeleportsFrame.BackgroundColor3 = Color3.fromRGB(115, 115, 115)
+TeleportsFrame.Position = UDim2.new(0, 0, 1, 0)
+TeleportsFrame.Size = UDim2.new(1, 0, 5, 0)
+TeleportsFrame.Visible = false
+TeleportsFrame.CanvasSize = UDim2.new(0, 0, 400, 0)
+
+local TeleportOpen = false
+Teleports.Name = "Teleports"
+Teleports.Parent = Scroll
+Teleports.AnchorPoint = Vector2.new(0.5, 0.5)
+Teleports.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+Teleports.BorderSizePixel = 0
+Teleports.Position = UDim2.new(0.5, 0, 0.0799999982, 0)
+Teleports.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+Teleports.Font = Enum.Font.SourceSans
+Teleports.Text = "Morphs                      v "
+Teleports.TextColor3 = Color3.fromRGB(0, 0, 0)
+Teleports.TextScaled = true
+Teleports.TextSize = 14.000
+Teleports.TextWrapped = true
+Teleports.TextXAlignment = Enum.TextXAlignment.Right
+Teleports.MouseButton1Click:Connect(function()
+	if TeleportOpen then
+		TeleportOpen = false
+		TeleportsFrame.Visible = false
+	else
+		TeleportOpen = true
+		TeleportsFrame.Visible = true
+	end
+end)
+
+Button.Name = "Button"
+Button.Parent = TeleportsFrame
+Button.Visible = false
+Button.AnchorPoint = Vector2.new(0.5, 0)
+Button.BackgroundColor3 = Color3.fromRGB(112, 112, 112)
+Button.Position = UDim2.new(0.25, 0, 0, 0)
+Button.Size = UDim2.new(0.800000012, 0, 0.0025, 0)
+Button.Font = Enum.Font.SourceSans
+Button.Text = "Text"
+Button.TextColor3 = Color3.fromRGB(0, 0, 0)
+Button.TextScaled = true
+Button.TextSize = 14.000
+Button.TextWrapped = true
+
+local char = plr.Character
+
+local dist = 0.0025
+local curdist = 0
+
+for i, model in pairs(game.Workspace:GetChildren()) do
+	wait()
+	local canPlace = true
+	for i, plr in pairs(game.Players:GetPlayers()) do
+		if plr.Character == model then
+			canPlace = false
+		end
+	end
+	if canPlace then
+		if model:IsA("Model") then
+			if model:FindFirstChild("Pad") then
+				local pad = model:FindFirstChild("Pad")
+				local b = Button:Clone()
+				b.Parent = TeleportsFrame
+				b.Visible = true
+				b.Position = UDim2.new(0.5, 0, curdist, 0)
+				curdist += dist
+				b.Text = model.Name
+				b.Name = model.Name
+				b.MouseButton1Click:Connect(function()
+					local oldpos = char.HumanoidRootPart.CFrame
+					char:SetPrimaryPartCFrame(pad.CFrame)
+					wait(0.3)
+					char:SetPrimaryPartCFrame(oldpos)
+				end)
+			end
+			if model:FindFirstChild("Head") then
+				local pad = model:FindFirstChild("Head")
+				local b = Button:Clone()
+				b.Parent = TeleportsFrame
+				b.Visible = true
+				b.Position = UDim2.new(0.5, 0, curdist, 0)
+				curdist += dist
+				b.Text = model.Name
+				b.Name = model.Name
+				b.MouseButton1Click:Connect(function()
+					local oldpos = char.HumanoidRootPart.CFrame
+					char:SetPrimaryPartCFrame(pad.CFrame)
+					wait(0.3)
+					char:SetPrimaryPartCFrame(oldpos)
+				end)
+			end
+		end
+	end
+end
