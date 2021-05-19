@@ -6,8 +6,11 @@ You can still use the seperate scripts themselves but it is recommended to use t
 
 Games coming soon:
 Lumber Tycoon 2
+
 Jailbreak
+
 Funky Friday
+
 
 Current games:
 Animatronic World !
