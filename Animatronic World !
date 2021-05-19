@@ -1,6 +1,14 @@
 local plr = game.Players.LocalPlayer
 
-
+local function CFrameMoveTo(Model, Position)
+	local part = Instance.new("Part",workspace)
+	part.Position = Position
+	part.Anchored = true
+	part.CanCollide = false
+	part.Transparency = 1
+	Model:SetPrimaryPartCFrame(part.CFrame)
+	part:Destroy()
+end
 
 local function Invis2()
 	--//Invis\\
@@ -8,15 +16,15 @@ local function Invis2()
 
 	local lastPos = char.HumanoidRootPart.CFrame
 
-	char:MoveTo(Vector3.new(-32.2, 12.6, -31))
+	CFrameMoveTo(char,Vector3.new(-32.2, 12.6, -31))
 	wait(0.3)
-	char:MoveTo(Vector3.new(12.5, 13.6, 21.5))
+	CFrameMoveTo(char,Vector3.new(12.5, 13.6, 21.5))
 	wait(0.3)
-	char:MoveTo(Vector3.new(-32.2, 12.6, -31))
+	CFrameMoveTo(char,Vector3.new(-32.2, 12.6, -31))
 	wait(0.3)
-	char:MoveTo(Vector3.new(-114,13.7,-85.5))
+	CFrameMoveTo(char,Vector3.new(-114,13.7,-85.5))
 	wait(0.3)
-	char:MoveTo(Vector3.new(-84, 12.6, -121.74))
+	CFrameMoveTo(char,Vector3.new(-84, 12.6, -121.74))
 	wait(0.3)
 	char:SetPrimaryPartCFrame(lastPos)
 end
@@ -25,7 +33,7 @@ local function Clear2()
 	local char = plr.Character
 
 	local lastPos = char.HumanoidRootPart.CFrame
-	char:MoveTo(Vector3.new(-32.2, 12.6, -31))
+	CFrameMoveTo(char,Vector3.new(-32.2, 12.6, -31))
 	wait(0.3)
 	char:SetPrimaryPartCFrame(lastPos)
 end
@@ -249,6 +257,8 @@ for i, model in pairs(game.Workspace:GetChildren()) do
 				b.Name = model.Name
 				b.MouseButton1Click:Connect(function()
 					local oldpos = char.HumanoidRootPart.CFrame
+					CFrameMoveTo(char,Vector3.new(-32.2, 12.6, -31))
+					wait(0.5)
 					char:SetPrimaryPartCFrame(pad.CFrame)
 					wait(0.3)
 					char:SetPrimaryPartCFrame(oldpos)
@@ -265,8 +275,8 @@ for i, model in pairs(game.Workspace:GetChildren()) do
 				b.Name = model.Name
 				b.MouseButton1Click:Connect(function()
 					local oldpos = char.HumanoidRootPart.CFrame
-					char:MoveTo(Vector3.new(-32.2, 12.6, -31))
-					wait(0.3)
+					CFrameMoveTo(char,Vector3.new(-32.2, 12.6, -31))
+					wait(0.5)
 					char:SetPrimaryPartCFrame(pad.CFrame)
 					wait(0.3)
 					char:SetPrimaryPartCFrame(oldpos)
