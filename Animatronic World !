@@ -51,6 +51,7 @@ local Close = Instance.new("TextButton")
 Gui.Name = "Gui"
 Gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Gui.ResetOnSpawn = false
+Gui.DisplayOrder = 100
 
 Drag.Name = "Drag"
 Drag.Parent = Gui
@@ -229,7 +230,6 @@ local dist = 0.0025
 local curdist = 0
 
 for i, model in pairs(game.Workspace:GetChildren()) do
-	wait()
 	local canPlace = true
 	for i, plr in pairs(game.Players:GetPlayers()) do
 		if plr.Character == model then
