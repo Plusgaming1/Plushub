@@ -2,6 +2,16 @@ if game.PlaceId == 155010111 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Plusgaming1/Plushub/main/Animatronic%20World%20!"))()
 elseif game.PlaceId == 286090429 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Plusgaming1/Plushub/Scripts/Arsenal"))()
+elseif game.PlaceId == 2512643572 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Plusgaming1/Plushub/Scripts/Bubble%20gum%20simulator"))()
 else
     print("Game not found in Plus hub")
 end
+
+                                                                                                                                                                                                                        --[[ 
+Place holder stuff for when adding scripts:
+
+elseif game.PlaceId == 0 then
+    loadstring(game:HttpGet(""))()
+    
+                                                                                                                                                                                                                        --]]
