@@ -1,0 +1,389 @@
+-- Variables:
+
+local plr = game.Players.LocalPlayer
+local AutofarmOn = false
+local CollectCoins = false
+
+-- Functions: 
+
+local function TeleportToIsland()
+	local A_1 = "TeleportToCheckpoint"
+	local A_2 = "The Floating Island"
+	local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+	Event:FireServer(A_1, A_2)
+end
+local function ToSpawn()
+	local A_1 = "TeleportToADoor"
+	local A_2 = "The Floating Island"
+	local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+	Event:FireServer(A_1, A_2)
+end
+local function GetObject()
+	local least = math.huge
+	local Object    
+	for _,Stuff in pairs (workspace:GetDescendants()) do
+		if Stuff:IsA("MeshPart") then
+			if Stuff.MeshId == "rbxassetid://2542638609" or Stuff.MeshId == "rbxassetid://2542638609" or Stuff.MeshId == "rbxassetid://2558194071" or Stuff.MeshId == "rbxassetid://2558179804" then
+				local Distance = game.Players.LocalPlayer:DistanceFromCharacter(Stuff.Position)
+				if Distance < least and Distance < 100 then
+					least = Distance
+					Object = Stuff
+				end
+			end
+		end
+	end
+	return Object
+end
+local function TeleportToSpace()
+	local A_1 = "TeleportToCheckpoint"
+	local A_2 = "Space"
+	local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+	Event:FireServer(A_1, A_2)
+end
+local function Sell()
+	local A_1 = "Teleport"
+	local A_2 = "Sell"
+	local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+	Event:FireServer(A_1, A_2)
+end
+local function BlowBubble()
+	local A_1 = "BlowBubble"
+	local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+	Event:FireServer(A_1)
+end
+local function TeleportToTwilight()
+	local A_1 = "TeleportToCheckpoint"
+	local A_2 = "The Twilight"
+	local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+	Event:FireServer(A_1, A_2)
+end
+local function collectChest()
+	local A_1 = "CollectChestReward"
+	local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+	Event:FireServer(A_1, "The Skylands")
+	Event:FireServer(A_1, "The Void")
+	Event:FireServer(A_1, "The Floating Island")
+end
+local function TeleportToSkylands()
+	local A_1 = "TeleportToCheckpoint"
+	local A_2 = "The Skylands"
+	local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+	Event:FireServer(A_1, A_2)
+end
+local function TeleportToVoid()
+	local A_1 = "TeleportToCheckpoint"
+	local A_2 = "The Void"
+	local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+	Event:FireServer(A_1, A_2)
+end
+local function BuyAllEggs()
+	local A_1 = "PurchaseEgg"
+	local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+	for i, egg in pairs(game.ReplicatedStorage.Assets.Eggs:GetChildren()) do
+		Event:FireServer(A_1, egg.Name)
+		wait()
+	end
+end
+local function CollectAllCoinsAndGems()
+	for i, coinorgem in pairs(workspace.Pickups:GetChildren()) do
+		if coinorgem:IsA("Part") then
+			for i = 1,10 do
+				wait()
+				plr.Character:MoveTo(coinorgem.Position)
+			end
+			wait(0.1)
+		end
+	end
+end
+
+-- Instances:
+
+local Bubblegumsimulator = Instance.new("ScreenGui")
+local Drag = Instance.new("ImageLabel")
+local Main = Instance.new("ImageLabel")
+local Scroll = Instance.new("ScrollingFrame")
+local Autofarm = Instance.new("TextButton")
+local GemsAndCoins = Instance.new("TextButton")
+local FIT = Instance.new("TextButton")
+local ST = Instance.new("TextButton")
+local TT = Instance.new("TextButton")
+local SkT = Instance.new("TextButton")
+local VT = Instance.new("TextButton")
+local Chests = Instance.new("TextButton")
+local Eggs = Instance.new("TextButton")
+local Name = Instance.new("TextLabel")
+local Exit = Instance.new("TextButton")
+local Close = Instance.new("TextButton")
+
+--Properties:
+
+Bubblegumsimulator.Name = "Bubble gum simulator"
+Bubblegumsimulator.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Bubblegumsimulator.DisplayOrder = 1000
+
+Drag.Name = "Drag"
+Drag.Parent = Bubblegumsimulator
+Drag.AnchorPoint = Vector2.new(1, 1)
+Drag.BackgroundColor3 = Color3.fromRGB(76, 76, 76)
+Drag.BackgroundTransparency = 1.000
+Drag.Position = UDim2.new(1, 0, 1, 0)
+Drag.Size = UDim2.new(0.25, 0, 0.0500000007, 0)
+Drag.Image = "rbxassetid://3570695787"
+Drag.ImageColor3 = Color3.fromRGB(76, 76, 76)
+Drag.ScaleType = Enum.ScaleType.Slice
+Drag.SliceCenter = Rect.new(100, 100, 100, 100)
+Drag.SliceScale = 0.100
+
+Main.Name = "Main"
+Main.Parent = Drag
+Main.AnchorPoint = Vector2.new(0.5, 1)
+Main.BackgroundColor3 = Color3.fromRGB(89, 89, 89)
+Main.BackgroundTransparency = 1.000
+Main.Position = UDim2.new(0.5, 0, 0.300000012, 0)
+Main.Size = UDim2.new(1, 0, 7, 0)
+Main.Image = "rbxassetid://3570695787"
+Main.ImageColor3 = Color3.fromRGB(89, 89, 89)
+Main.ScaleType = Enum.ScaleType.Slice
+Main.SliceCenter = Rect.new(100, 100, 100, 100)
+Main.SliceScale = 0.100
+
+Scroll.Name = "Scroll"
+Scroll.Parent = Main
+Scroll.Active = true
+Scroll.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Scroll.BackgroundTransparency = 1.000
+Scroll.Position = UDim2.new(0, 0, 5.35584057e-08, 0)
+Scroll.Size = UDim2.new(1, 0, 1, 0)
+Scroll.CanvasSize = UDim2.new(0, 0, 4, 0)
+
+Autofarm.Name = "Autofarm"
+Autofarm.Parent = Scroll
+Autofarm.AnchorPoint = Vector2.new(0.5, 0.5)
+Autofarm.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+Autofarm.BorderSizePixel = 0
+Autofarm.Position = UDim2.new(0.5, 0, 0.0500000007, 0)
+Autofarm.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+Autofarm.Font = Enum.Font.SourceSans
+Autofarm.Text = "Auto farm: Off"
+Autofarm.TextColor3 = Color3.fromRGB(0, 0, 0)
+Autofarm.TextScaled = true
+Autofarm.TextSize = 14.000
+Autofarm.TextWrapped = true
+Autofarm.MouseButton1Click:Connect(function()
+	if AutofarmOn then
+		AutofarmOn = false
+		Autofarm.Text = "Auto farm: Off"
+	else
+		AutofarmOn = true
+		Autofarm.Text = "Auto farm: On"
+	end
+end)
+
+GemsAndCoins.Name = "GemsAndCoins"
+GemsAndCoins.Parent = Scroll
+GemsAndCoins.AnchorPoint = Vector2.new(0.5, 0.5)
+GemsAndCoins.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+GemsAndCoins.BorderSizePixel = 0
+GemsAndCoins.Position = UDim2.new(0.5, 0, 0.0799999982, 0)
+GemsAndCoins.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+GemsAndCoins.Font = Enum.Font.SourceSans
+GemsAndCoins.Text = "Auto gems/coins (Coming soon)"
+GemsAndCoins.TextColor3 = Color3.fromRGB(0, 0, 0)
+GemsAndCoins.TextScaled = true
+GemsAndCoins.TextSize = 14.000
+GemsAndCoins.TextWrapped = true
+--[[ Btw if you remove this it wont work its very buggy
+GemsAndCoins.MouseButton1Click:Connect(function()
+	if CollectCoins then
+		CollectCoins = false
+		GemsAndCoins.Text = "Auto gems/coins: Off"
+	else
+		CollectCoins = true
+		GemsAndCoins.Text = "Auto gems/coins: On"
+		spawn(function()
+			while wait() do
+				if CollectCoins then
+					local E = GetObject()
+					if E ~= nil then
+						plr.Character:MoveTo(E.Position)
+					else
+						CollectCoins = false
+						GemsAndCoins.Text = "Auto gems/coins: Off"
+						break
+					end
+				else
+					break
+				end
+			end
+		end)
+	end
+end)]]
+
+FIT.Name = "FIT"
+FIT.Parent = Scroll
+FIT.AnchorPoint = Vector2.new(0.5, 0.5)
+FIT.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+FIT.BorderSizePixel = 0
+FIT.Position = UDim2.new(0.5, 0, 0.109999999, 0)
+FIT.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+FIT.Font = Enum.Font.SourceSans
+FIT.Text = "Floating Island Teleport"
+FIT.TextColor3 = Color3.fromRGB(0, 0, 0)
+FIT.TextScaled = true
+FIT.TextSize = 14.000
+FIT.TextWrapped = true
+FIT.MouseButton1Click:Connect(TeleportToIsland)
+
+ST.Name = "ST"
+ST.Parent = Scroll
+ST.AnchorPoint = Vector2.new(0.5, 0.5)
+ST.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+ST.BorderSizePixel = 0
+ST.Position = UDim2.new(0.5, 0, 0.140000001, 0)
+ST.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+ST.Font = Enum.Font.SourceSans
+ST.Text = "Space Teleport"
+ST.TextColor3 = Color3.fromRGB(0, 0, 0)
+ST.TextScaled = true
+ST.TextSize = 14.000
+ST.TextWrapped = true
+ST.MouseButton1Click:Connect(TeleportToSpace)
+
+TT.Name = "TT"
+TT.Parent = Scroll
+TT.AnchorPoint = Vector2.new(0.5, 0.5)
+TT.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+TT.BorderSizePixel = 0
+TT.Position = UDim2.new(0.5, 0, 0.170000002, 0)
+TT.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+TT.Font = Enum.Font.SourceSans
+TT.Text = "Twilight Teleport"
+TT.TextColor3 = Color3.fromRGB(0, 0, 0)
+TT.TextScaled = true
+TT.TextSize = 14.000
+TT.TextWrapped = true
+TT.MouseButton1Click:Connect(TeleportToTwilight)
+
+SkT.Name = "SkT"
+SkT.Parent = Scroll
+SkT.AnchorPoint = Vector2.new(0.5, 0.5)
+SkT.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+SkT.BorderSizePixel = 0
+SkT.Position = UDim2.new(0.5, 0, 0.200000003, 0)
+SkT.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+SkT.Font = Enum.Font.SourceSans
+SkT.Text = "Skylands Teleport"
+SkT.TextColor3 = Color3.fromRGB(0, 0, 0)
+SkT.TextScaled = true
+SkT.TextSize = 14.000
+SkT.TextWrapped = true
+SkT.MouseButton1Click:Connect(TeleportToSkylands)
+
+VT.Name = "VT"
+VT.Parent = Scroll
+VT.AnchorPoint = Vector2.new(0.5, 0.5)
+VT.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+VT.BorderSizePixel = 0
+VT.Position = UDim2.new(0.5, 0, 0.230000004, 0)
+VT.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+VT.Font = Enum.Font.SourceSans
+VT.Text = "Void Teleport"
+VT.TextColor3 = Color3.fromRGB(0, 0, 0)
+VT.TextScaled = true
+VT.TextSize = 14.000
+VT.TextWrapped = true
+VT.MouseButton1Click:Connect(TeleportToVoid)
+
+Chests.Name = "Chests"
+Chests.Parent = Scroll
+Chests.AnchorPoint = Vector2.new(0.5, 0.5)
+Chests.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+Chests.BorderSizePixel = 0
+Chests.Position = UDim2.new(0.5, 0, 0.25999999, 0)
+Chests.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+Chests.Font = Enum.Font.SourceSans
+Chests.Text = "Open all chests"
+Chests.TextColor3 = Color3.fromRGB(0, 0, 0)
+Chests.TextScaled = true
+Chests.TextSize = 14.000
+Chests.TextWrapped = true
+Chests.MouseButton1Click:Connect(collectChest)
+
+Eggs.Name = "Eggs"
+Eggs.Parent = Scroll
+Eggs.AnchorPoint = Vector2.new(0.5, 0.5)
+Eggs.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+Eggs.BorderSizePixel = 0
+Eggs.Position = UDim2.new(0.5, 0, 0.289999992, 0)
+Eggs.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+Eggs.Font = Enum.Font.SourceSans
+Eggs.Text = "Buy all eggs"
+Eggs.TextColor3 = Color3.fromRGB(0, 0, 0)
+Eggs.TextScaled = true
+Eggs.TextSize = 14.000
+Eggs.TextWrapped = true
+Eggs.MouseButton1Click:Connect(BuyAllEggs)
+
+Name.Name = "Name"
+Name.Parent = Drag
+Name.AnchorPoint = Vector2.new(0, 1)
+Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Name.BackgroundTransparency = 1.000
+Name.Position = UDim2.new(0, 0, 1, 0)
+Name.Size = UDim2.new(0.502466083, 0, 0.699999988, 0)
+Name.Font = Enum.Font.SciFi
+Name.Text = "Name"
+Name.TextColor3 = Color3.fromRGB(0, 0, 0)
+Name.TextScaled = true
+Name.TextSize = 14.000
+Name.TextWrapped = true
+Name.TextXAlignment = Enum.TextXAlignment.Left
+
+Exit.Name = "Exit"
+Exit.Parent = Drag
+Exit.AnchorPoint = Vector2.new(1, 1)
+Exit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Exit.BackgroundTransparency = 1.000
+Exit.Position = UDim2.new(1, 0, 1, 0)
+Exit.Size = UDim2.new(0.100000001, 0, 0.699999988, 0)
+Exit.Font = Enum.Font.SourceSans
+Exit.Text = "X"
+Exit.TextColor3 = Color3.fromRGB(255, 0, 0)
+Exit.TextScaled = true
+Exit.TextSize = 14.000
+Exit.TextWrapped = true
+Exit.MouseButton1Click:Connect(function()
+	Bubblegumsimulator:Destroy()
+end)
+
+local Closed = false
+Close.Name = "Close"
+Close.Parent = Drag
+Close.AnchorPoint = Vector2.new(1, 1)
+Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Close.BackgroundTransparency = 1.000
+Close.Position = UDim2.new(0.899999976, 0, 1, 0)
+Close.Size = UDim2.new(0.100000001, 0, 0.699999988, 0)
+Close.Font = Enum.Font.SourceSans
+Close.Text = "-"
+Close.TextColor3 = Color3.fromRGB(135, 135, 135)
+Close.TextSize = 100.000
+Close.TextWrapped = true
+Close.MouseButton1Click:Connect(function()
+	if Closed then
+		Closed = false
+		Main.Visible = true
+	else
+		Closed = true
+		Main.Visible = false
+	end
+end)
+
+while wait() do
+	if AutofarmOn then
+		wait(0.2)
+		BlowBubble()
+		wait(0.2)
+		Sell()
+	end
+end
