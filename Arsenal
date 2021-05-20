@@ -1,0 +1,406 @@
+local Aimbot1 = false
+local SilentAimbot1 = false
+local Key1 = Enum.KeyCode.E
+local Esp = false
+local FOV = 80
+local plr = game.Players.LocalPlayer
+local m = plr:GetMouse()
+local cam = game.Workspace.Camera
+local UIS = game:GetService("UserInputService")
+local Aimbotting = false
+
+-- Functions:
+
+local espfolder = Instance.new("Folder", cam)
+espfolder.Name = "ESP"
+
+local function ActivateEsp()
+	for _, plr2 in pairs(game.Players:GetChildren()) do
+		if plr2.Character and (plr2.Character.Humanoid.Health > 0) and (plr.Name ~= plr2.Name) then
+			if plr2.Team.Name ~= plr.Team.Name  then
+				local e = espfolder:FindFirstChild(plr.Name)
+				if not e then
+					local Billboard = Instance.new("BillboardGui", espfolder)
+					Billboard.AlwaysOnTop = true
+					Billboard.Size = UDim2.new(3, 0, 5, 0)
+					Billboard.MaxDistance = math.huge
+					Billboard.Adornee = plr2.Character.HumanoidRootPart
+					local Frame = Instance.new("Frame", Billboard)
+					Frame.Size = UDim2.new(1, 0, 1, 0)
+					local color = Color3.fromRGB(132, 132, 132)
+					if plr2.Team.Name == "TRC" then
+						color = Color3.fromRGB(255, 0, 0)
+					else
+						if plr2.Team.Name == "TBC" then
+							color = Color3.fromRGB(0, 0, 255)
+						else
+							if plr2.Team.Name == "TGC" then
+								color = Color3.fromRGB(255, 0, 0)
+							else
+								if plr2.Team.Name == "TPC" then
+									color = Color3.fromRGB(180, 0, 255)
+								else
+									if plr2.Team.Name == "TYC" then
+										color = Color3.fromRGB(255, 255, 0)
+									end
+								end
+							end
+						end
+					end
+					Frame.BackgroundColor3 = color
+					Frame.BorderSizePixel = 0
+					Frame.BackgroundTransparency = 0.5
+					plr.Character.Humanoid.Died:Connect(function()
+						Billboard:Destroy()
+					end)
+				end
+			end
+		end
+	end
+end
+
+local function DisableEsp()
+	espfolder:Destroy()
+	espfolder = Instance.new("Folder")
+	espfolder.Parent = workspace.Camera
+	espfolder.Name = "ESP"
+end
+
+-- Instances:
+
+local Arsenal = Instance.new("ScreenGui")
+local Drag = Instance.new("ImageLabel")
+local Main = Instance.new("ImageLabel")
+local Scroll = Instance.new("ScrollingFrame")
+local Aimbot = Instance.new("TextButton")
+local FOV1 = Instance.new("TextBox")
+local SilentAimbot = Instance.new("TextButton")
+local Key = Instance.new("TextButton")
+local Smoothness = Instance.new("TextBox")
+local ESP = Instance.new("TextButton")
+local Name = Instance.new("TextLabel")
+local Exit = Instance.new("TextButton")
+local Close = Instance.new("TextButton")
+
+--Properties:
+
+Arsenal.Name = "Arsenal"
+Arsenal.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Arsenal.ResetOnSpawn = false
+Arsenal.DisplayOrder = 1000
+
+Drag.Name = "Drag"
+Drag.Parent = Arsenal
+Drag.AnchorPoint = Vector2.new(1, 1)
+Drag.BackgroundColor3 = Color3.fromRGB(76, 76, 76)
+Drag.BackgroundTransparency = 1.000
+Drag.Position = UDim2.new(1, 0, 1, 0)
+Drag.Size = UDim2.new(0.25, 0, 0.0500000007, 0)
+Drag.Image = "rbxassetid://3570695787"
+Drag.ImageColor3 = Color3.fromRGB(76, 76, 76)
+Drag.ScaleType = Enum.ScaleType.Slice
+Drag.SliceCenter = Rect.new(100, 100, 100, 100)
+Drag.SliceScale = 0.100
+
+Main.Name = "Main"
+Main.Parent = Drag
+Main.AnchorPoint = Vector2.new(0.5, 1)
+Main.BackgroundColor3 = Color3.fromRGB(89, 89, 89)
+Main.BackgroundTransparency = 1.000
+Main.Position = UDim2.new(0.5, 0, 0.300000012, 0)
+Main.Size = UDim2.new(1, 0, 7, 0)
+Main.Image = "rbxassetid://3570695787"
+Main.ImageColor3 = Color3.fromRGB(89, 89, 89)
+Main.ScaleType = Enum.ScaleType.Slice
+Main.SliceCenter = Rect.new(100, 100, 100, 100)
+Main.SliceScale = 0.100
+
+Scroll.Name = "Scroll"
+Scroll.Parent = Main
+Scroll.Active = true
+Scroll.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Scroll.BackgroundTransparency = 1.000
+Scroll.Position = UDim2.new(0, 0, 5.35584057e-08, 0)
+Scroll.Size = UDim2.new(1, 0, 1, 0)
+Scroll.CanvasSize = UDim2.new(0, 0, 4, 0)
+
+Aimbot.Name = "Aimbot"
+Aimbot.Parent = Scroll
+Aimbot.AnchorPoint = Vector2.new(0.5, 0.5)
+Aimbot.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+Aimbot.BorderSizePixel = 0
+Aimbot.Position = UDim2.new(0.5, 0, 0.0500000007, 0)
+Aimbot.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+Aimbot.Font = Enum.Font.SourceSans
+Aimbot.Text = "Aimbot: Off"
+Aimbot.TextColor3 = Color3.fromRGB(0, 0, 0)
+Aimbot.TextScaled = true
+Aimbot.TextSize = 14.000
+Aimbot.TextWrapped = true
+Aimbot.MouseButton1Click:Connect(function()
+	if Aimbot1 then
+		Aimbot1 = false
+		Aimbot.Text = "Aimbot: Off"
+	else
+		Aimbot1 = true
+		Aimbot.Text = "Aimbot: On"
+	end
+end)
+
+FOV1.Name = "FOV"
+FOV1.Parent = Scroll
+FOV1.AnchorPoint = Vector2.new(0.5, 0.5)
+FOV1.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+FOV1.BorderSizePixel = 0
+FOV1.Position = UDim2.new(0.5, 0, 0.0799999982, 0)
+FOV1.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+FOV1.Font = Enum.Font.SourceSans
+FOV1.PlaceholderText = "Aimbot FOV"
+FOV1.Text = "80"
+FOV1.TextColor3 = Color3.fromRGB(0, 0, 0)
+FOV1.TextScaled = true
+FOV1.TextSize = 14.000
+FOV1.TextWrapped = true
+FOV1.Changed:Connect(function()
+	FOV = tonumber(FOV1.Text)
+end)
+
+SilentAimbot.Name = "Silent Aimbot"
+SilentAimbot.Parent = Scroll
+SilentAimbot.AnchorPoint = Vector2.new(0.5, 0.5)
+SilentAimbot.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+SilentAimbot.BorderSizePixel = 0
+SilentAimbot.Position = UDim2.new(0.5, 0, 0.109999999, 0)
+SilentAimbot.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+SilentAimbot.Font = Enum.Font.SourceSans
+SilentAimbot.Text = "Silent Aimbot (Not working)"
+SilentAimbot.TextColor3 = Color3.fromRGB(0, 0, 0)
+SilentAimbot.TextScaled = true
+SilentAimbot.TextSize = 14.000
+SilentAimbot.TextWrapped = true
+--[[SilentAimbot.MouseButton1Click:Connect(function()
+	if SilentAimbot1 then
+		SilentAimbot.Text = "Silent Aimbot (Testing): Off"
+		SilentAimbot1 = false
+	else
+		SilentAimbot.Text = "Silent Aimbot (Testing): On"
+		SilentAimbot1 = true
+	end
+end)--]]
+
+
+Key.Name = "Key"
+Key.Parent = Scroll
+Key.AnchorPoint = Vector2.new(0.5, 0.5)
+Key.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+Key.BorderSizePixel = 0
+Key.Position = UDim2.new(0.5, 0, 0.140000001, 0)
+Key.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+Key.Font = Enum.Font.SourceSans
+Key.Text = "Aimkey: E"
+Key.TextColor3 = Color3.fromRGB(0, 0, 0)
+Key.TextScaled = true
+Key.TextSize = 14.000
+Key.TextWrapped = true
+Key.MouseButton1Click:Connect(function()
+	ChangingKey = true
+	Key.Text = "Press any key"
+end)
+UIS.InputBegan:Connect(function(i)
+	if ChangingKey then
+		ChangingKey = false
+		local TOTEXT = tostring(i.KeyCode)
+		local TOTEXTSPLIT = TOTEXT:split("")
+		local WantedText = ""
+		for i = 1,#TOTEXT do
+			if i >= 14 then
+				WantedText = WantedText.. TOTEXTSPLIT[i]
+			end
+		end
+		Key1 = i.KeyCode
+		Key.Text = WantedText
+	else
+		if Aimbot1 then
+			if i.KeyCode == Key1 then
+				Aimbotting = true
+			end
+		end
+	end
+end)
+UIS.InputEnded:Connect(function(i)
+	if i.KeyCode == Key1 then
+		Aimbotting = false
+	end
+end)
+
+Smoothness.Name = "Smoothness"
+Smoothness.Parent = Scroll
+Smoothness.AnchorPoint = Vector2.new(0.5, 0.5)
+Smoothness.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+Smoothness.BorderSizePixel = 0
+Smoothness.Position = UDim2.new(0.5, 0, 0.170000002, 0)
+Smoothness.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+Smoothness.Font = Enum.Font.SourceSans
+Smoothness.PlaceholderText = "Smoothness"
+Smoothness.Text = "1"
+Smoothness.TextColor3 = Color3.fromRGB(0, 0, 0)
+Smoothness.TextScaled = true
+Smoothness.TextSize = 14.000
+Smoothness.TextWrapped = true
+
+ESP.Name = "ESP"
+ESP.Parent = Scroll
+ESP.AnchorPoint = Vector2.new(0.5, 0.5)
+ESP.BackgroundColor3 = Color3.fromRGB(130, 130, 130)
+ESP.BorderSizePixel = 0
+ESP.Position = UDim2.new(0.5, 0, 0.200000003, 0)
+ESP.Size = UDim2.new(0.800000012, 0, 0.0250000004, 0)
+ESP.Font = Enum.Font.SourceSans
+ESP.Text = "ESP: Off"
+ESP.TextColor3 = Color3.fromRGB(0, 0, 0)
+ESP.TextScaled = true
+ESP.TextSize = 14.000
+ESP.TextWrapped = true
+ESP.MouseButton1Click:Connect(function()
+	if Esp then
+		Esp = false
+		DisableEsp()
+	else
+		Esp = true
+		ActivateEsp()
+	end
+end)
+
+Name.Name = "Name"
+Name.Parent = Drag
+Name.AnchorPoint = Vector2.new(0, 1)
+Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Name.BackgroundTransparency = 1.000
+Name.Position = UDim2.new(0, 0, 1, 0)
+Name.Size = UDim2.new(0.502466083, 0, 0.699999988, 0)
+Name.Font = Enum.Font.SciFi
+Name.Text = "Name"
+Name.TextColor3 = Color3.fromRGB(0, 0, 0)
+Name.TextScaled = true
+Name.TextSize = 14.000
+Name.TextWrapped = true
+Name.TextXAlignment = Enum.TextXAlignment.Left
+
+Exit.Name = "Exit"
+Exit.Parent = Drag
+Exit.AnchorPoint = Vector2.new(1, 1)
+Exit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Exit.BackgroundTransparency = 1.000
+Exit.Position = UDim2.new(1, 0, 1, 0)
+Exit.Size = UDim2.new(0.100000001, 0, 0.699999988, 0)
+Exit.Font = Enum.Font.SourceSans
+Exit.Text = "X"
+Exit.TextColor3 = Color3.fromRGB(255, 0, 0)
+Exit.TextScaled = true
+Exit.TextSize = 14.000
+Exit.TextWrapped = true
+Exit.MouseButton1Click:Connect(function()
+	Arsenal:Destroy()
+end)
+
+local Closed = false
+Close.Name = "Close"
+Close.Parent = Drag
+Close.AnchorPoint = Vector2.new(1, 1)
+Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Close.BackgroundTransparency = 1.000
+Close.Position = UDim2.new(0.899999976, 0, 1, 0)
+Close.Size = UDim2.new(0.100000001, 0, 0.699999988, 0)
+Close.Font = Enum.Font.SourceSans
+Close.Text = "-"
+Close.TextColor3 = Color3.fromRGB(135, 135, 135)
+Close.TextSize = 100.000
+Close.TextWrapped = true
+Close.MouseButton1Click:Connect(function()
+	if Closed then
+		Closed = false
+		Main.Visible = true
+	else
+		Closed = true
+		Main.Visible = false
+	end
+end)
+
+-- Events:
+
+game:GetService("RunService").RenderStepped:Connect(function()
+	if Esp then
+		ESP.Text = "ESP: On"
+	else
+		ESP.Text = "ESP: Off"
+	end
+	if Aimbotting then
+		local maxdist = FOV
+		local targetplr = nil
+		for i, plr2 in pairs(game.Players:GetPlayers()) do
+			if plr2.Status.Team.Value ~= plr.Status.Team.Value then
+				local CamPos, Visible = cam:WorldToScreenPoint(plr2.Character.Head.Position)
+				if Visible then
+					local dist = (Vector2.new(m.X,m.Y) - Vector2.new(CamPos.X,CamPos.Y)).Magnitude
+					if dist <= maxdist then
+						maxdist = dist
+						targetplr = plr2
+					end
+				end
+			end
+		end
+		if targetplr then
+			local Type = math.random(1,tonumber(Smoothness.Text))
+			if Type == 1 then
+				cam.CFrame = CFrame.new(cam.CFrame.Position, targetplr.Character.Head.CFrame.Position)
+			else
+				cam.CFrame = CFrame.new(cam.CFrame.Position, targetplr.Character.UpperTorso.CFrame.Position)
+			end
+		end
+	end
+end)
+--[[
+m.Button1Down:Connect(function()
+	repeat
+		if SilentAimbot1 then
+			local oldCFrame = cam.CFrame
+			for i, plr2 in pairs(game.Players:GetPlayers()) do
+				if plr2.Status.Team.Value ~= plr.Status.Team.Value then
+					local CamPos, Visible = cam:WorldToScreenPoint(plr2.Character.Head.Position)
+					if Visible then
+						local dist = (Vector2.new(m.X,m.Y) - Vector2.new(CamPos.X,CamPos.Y)).Magnitude
+						if dist <= FOV1 then
+							local Type = math.random(1,tonumber(Smoothness.Text))
+							if Type == 1 then
+								cam.CFrame = CFrame.new(cam.CFrame.Position, plr2.Character.Head.CFrame.Position)
+							else
+								cam.CFrame = CFrame.new(cam.CFrame.Position, plr2.Character.UpperTorso.CFrame.Position)
+							end
+						end
+					end
+				end
+			end
+			wait(0.01)
+			cam.CFrame = oldCFrame
+		end
+	until m.Button1Up
+end)--]]
+
+game.Players.PlayerAdded:Connect(function(plr)
+	plr.CharacterAdded:Connect(function()
+		if Esp then
+			wait(0.1)
+			DisableEsp()
+			ActivateEsp()
+		end
+	end)
+end)
+for i, plr in pairs(game.Players:GetPlayers()) do
+	plr.CharacterAdded:Connect(function()
+		if Esp then
+			wait(0.1)
+			DisableEsp()
+			ActivateEsp()
+		end
+	end)
+end
